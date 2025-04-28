@@ -9,4 +9,21 @@ if calificacion <= 70:
 else:
  print ("aprobado")
 ```
-    
+```python
+    suma = 0
+for i in range (10):
+    valor = float(input(f"ingrese el valor de {i+1}: "))
+    suma += valor
+promedio = suma / 10
+print(f"el valor de la suma es {suma}")
+print(f"el valor del promedio es {promedio}")
+```
+```python
+suma = 0
+for i in range(3):
+    calificacion = float(input(f"ingrese la {i+1} calificacion: "))
+    suma += calificacion
+promedio = suma/3
+print(f"el promedio es {promedio}")
+print (f"las calificaciones son {calificacion}")
+```
