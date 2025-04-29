@@ -18,3 +18,25 @@ lista = [float(n) for n in calificaciones.split(",")]
 promedio = sum(lista)/ len(lista)
 print(f"promedio de calificaciones: {promedio:.2f}")
 ```
+```python
+entrada = (input("ingrese las calificaciones separadas por comas: "))
+calificaciones = entrada.split(",")
+suma = 0
+cantidad = 0
+for i in calificaciones:
+    nota =float(i.strip())
+    suma += nota
+    cantidad += 1
+promedio = suma/cantidad
+print(f"el promedio es : {promedio}")
+```
+```python
+print("ingrese calificaciones una por una y escriba -5 para finalizar: ")
+contador = 0
+entrada = float(input("ingrese las calificaciones: "))
+while entrada != -5:
+    if entrada > 70:
+        contador += 1
+    entrada = float(input("ingrese otra calificacion (-5 para finalizar): "))
+print(f"la cantidad de numeros mayores a 70 son {contador}")
+```
