@@ -39,4 +39,21 @@ while entrada != -5:
         contador += 1
     entrada = float(input("ingrese otra calificacion (-5 para finalizar): "))
 print(f"la cantidad de numeros mayores a 70 son {contador}")
+
+```
+```python
+entrada = (input("ingrese las calificaciones separadas por comas: "))
+calificaciones = entrada.split(",")
+buscada =float(input("qué calificacion deseas buscar: "))
+cantidad = 0
+for i in calificaciones:
+    nota =float(i.strip())
+    if nota != buscada:
+        continue
+    cantidad += 1
+    if cantidad == 3:
+     print(f"la calificacion {buscada} ya apareció más de 3 veces")
+     break
+print(f"la calificacion {buscada} apareció {cantidad} veces")
+
 ```
