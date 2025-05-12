@@ -171,3 +171,154 @@ if acumulador != "":
 # Mostramos el total de veces que apareció
 print(f"La calificación {buscada} apareció {cantidad} veces.")
 ```
+```python
+# Diccionario con 5 productos predeterminados
+products = [
+    {"name": "sal", "quantity": 100, "price": 2550},
+    {"name": "bocadillo", "quantity": 200, "price": 4990},
+    {"name": "galletas", "quantity": 150, "price": 6250},
+    {"name": "desodorante", "quantity": 50, "price": 4490},
+    {"name": "electrolit", "quantity": 250, "price": 8700},
+]
+
+def register():
+    # Función para registrar productos
+    print("\n---Registrar un nuevo producto---")
+    name = input("Ingrese el nombre del producto ").strip()
+    try:
+        quantity = int(input("Ingrese la cantidad de productos "))
+        if quantity < 0:
+            print("Cantidad inválida. Por favor ingrese una cantidad válida")
+            return
+    except ValueError:
+        print("Entrada inválida. La cantidad debe ser un número. ")
+        return
+    
+    try:
+        price = float(input("Ingrese el precio: "))
+        if price <= 0:
+            print("Precio inválido. Por favor ingrese un precio válido")
+            return
+    except ValueError:
+        print("Entrada inválida. El precio debe ser un número. ")
+        return
+    
+    for product in products:
+        if product['name'].lower() == name.lower():
+            print("El producto ya existe en el inventario. ")
+            return
+    
+    new_product = {
+        "name": name,
+        "quantity": quantity,
+        "price": round(price, 2)
+    }
+    products.append(new_product)
+    print(f"\nProducto '{name}' registrado con éxito. ")
+
+def search():
+    # Función para buscar productos
+    print("\n---Buscar producto---")
+    ask = input("Ingrese el nombre del producto a buscar: ").strip().lower()
+    found = False
+    for product in products:
+        if ask in product['name'].lower():
+            print(f"\nProducto encontrado: \n"
+                  f"Nombre: {product['name']}\n"
+                  f"Cantidad disponible: {product['quantity']}\n"
+                  f"Precio: ${product['price']}\n")
+            found = True
+    if not found:
+        print("Producto no encontrado. ¿Desea registrarlo? (yes/no)")
+        answer = input().strip().lower()
+        if answer == "yes":
+            register()
+
+def update():
+    # Función para actualizar productos
+    print("\n---Actualizar producto---")
+    ask = input("Ingrese el nombre del producto a actualizar: ").strip().lower()
+    found = False
+    for product in products:
+        if ask in product['name'].lower():
+            print(f"\nProducto encontrado: \n"
+                  f"Nombre: {product['name']}\n"
+                  f"Cantidad disponible: {product['quantity']}\n"
+                  f"Precio: ${product['price']}\n")
+            found = True
+            data_change = input("¿Qué valor desea cambiar? (quantity/price) ").strip().lower()
+            if data_change in ['quantity', 'price']:
+                try:
+                    new_value = float(input("Ingrese el nuevo valor: "))
+                    if data_change == 'quantity' and new_value < 0:
+                        print("Cantidad inválida. ")
+                        return
+                    if data_change == 'price' and new_value <= 0:
+                        print("Precio inválido. ")
+                        return
+                    product[data_change] = new_value
+                    print(f"{data_change.capitalize()} actualizado con éxito.\n")
+                except ValueError:
+                    print("Entrada inválida. ")
+            else:
+                print("Valor inválido. ")
+    if not found:
+        print("Producto no encontrado. ¿Desea registrarlo? (yes/no)")
+        answer = input().strip().lower()
+        if answer == "yes":
+            register()
+
+def delete():
+    # Función para eliminar productos
+    print("\n---Eliminar producto---")
+    delete = input("Ingrese el nombre del producto a eliminar: ").strip().lower()
+    found = False
+    for product in products:
+        if delete in product['name'].lower():
+            found = True
+            answer = input("¿Está seguro de eliminar este producto? (yes/no) ").strip().lower()
+            if answer == "yes":
+                products.remove(product)
+                print("Producto eliminado con éxito. ")
+            else:
+                print("Eliminación cancelada. ")
+    if not found:
+        print("Producto no encontrado. ")
+
+def generate():
+    # Función para generar informe de inventario
+    print("\n---Informe de inventario---")
+    total_cost = 0
+    for product in products:
+        cost = product['
+def main():
+    # Menú de opciones
+    while True:
+        print("\n---Opciones---")
+        print("1. Registrar nuevo producto")
+        print("2. Buscar producto")
+        print("3. Actualizar información")
+        print("4. Eliminar producto")
+        print("5. Generar informe de inventario")
+        print("6. Salir")
+        
+        opcion = input("Elija una opción (1-6): ")
+        
+        if opcion == "1":
+            register()
+        elif opcion == "2":
+            search()
+        elif opcion == "3":
+            update()
+        elif opcion == "4":
+            delete()
+        elif opcion == "5":
+            generate()
+        elif opcion == "6":
+            print("Hasta luego!")
+            break
+        else:
+            print("Opción inválida. Intente nuevamente.")
+
+if __name__ == "__main__":
+    main()
